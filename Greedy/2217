@@ -1,0 +1,17 @@
+# 로프
+
+n = int(input()) #정수 n 입력
+
+array  = [] #n개의 줄의 최대 중량
+result = [] #최대중량 배열
+
+for i in range(n):
+	array.append(int(input()))
+
+array.sort(reverse=True)
+
+for i in range(len(array)):
+	result.append( ( array[i] * (i+1) ) )
+
+print(max(result))
+
