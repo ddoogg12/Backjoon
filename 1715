@@ -1,0 +1,22 @@
+#카드 정렬하기
+
+import heapq
+
+n = int(input())
+
+array = []
+
+for i in range(n):
+	heapq.heappush(array, int(input()))
+
+if n == 1:
+	print(0)
+else:
+	result = 0
+	while len(array) > 1:
+		temp1 = heapq.heappop(array)
+		temp2 = heapq.heappop(array)
+		result += ( temp1 + temp2 )
+		heapq.heappush(array, temp1 + temp2)
+		
+print(result)
