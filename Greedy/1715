@@ -14,11 +14,9 @@ for i in range(n):
 if n == 1:
 	print(result)
 else:
-	result = 0
 	while len(array) > 1:
 		temp1 = heapq.heappop(array)
 		temp2 = heapq.heappop(array)
 		result += ( temp1 + temp2 )
-		heapq.heappush(array, temp1 + temp2)		
-
-print(result)
+		heapq.heappush(array, temp1 + temp2)
+	print(result)
