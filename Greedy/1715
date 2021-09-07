@@ -6,17 +6,19 @@ n = int(input())
 
 array = []
 
+result = 0
+
 for i in range(n):
 	heapq.heappush(array, int(input()))
 
 if n == 1:
-	print(0)
+	print(result)
 else:
 	result = 0
 	while len(array) > 1:
 		temp1 = heapq.heappop(array)
 		temp2 = heapq.heappop(array)
 		result += ( temp1 + temp2 )
-		heapq.heappush(array, temp1 + temp2)
-		
+		heapq.heappush(array, temp1 + temp2)		
+
 print(result)
