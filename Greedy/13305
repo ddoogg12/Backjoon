@@ -5,17 +5,14 @@ n = int(input()) # 도시수 입력
 d = list(map(int, input().split()))
 m = list(map(int, input().split()))
 
-result = 0
-distance = 0
+result = 0    #총 금액
+m_now  = m[0] #주유비가 적은 도시
 
-while len(m) > 1:
-	if m[i] > m[i+1]:
-		result += m[i] * d[i]
-	else:
-		m.pop([i+1])
-		distance += ( d[i] + d[i+1])
-	
-print(d)
-print(m)
+for i in range(n-1):
+	#금액이 작은 도시마다 갱신 
+	if m[i] < m_now:
+		m_now = m[i]
+	#주유비가 적은 금액으로 거리 곱하기
+	result += m_now * d[i]	
+
 print(result)
-
