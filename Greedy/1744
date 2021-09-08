@@ -25,14 +25,23 @@ for i in range(len(plus_integer)):
 			result += ( plus_integer[i-1] * plus_integer[i] )
 	elif i %2 ==0 and i == len(plus_integer) - 1:
 		result += plus_integer[i]
-
+	else:
+		if plus_integer[i] != 1 and plus_integer[i+1] != 1:
+			result += plus_integer[i] * plus_integer[i+1]
+		else:
+			result += plus_integer[i] + plus_integer[i+1]
 for i in range(len(minus_integer)):
 	if i % 2 == 1:
-		if i != len(plus_integer) - 1:
+		if i != len(minus_integer) - 1:
 			result += (minus_integer[i-1] * minus_integer[i])
 	elif i %2 ==0 and i == len(minus_integer) - 1:
 		if zero == True:
 			result += minus_integer[i] * 0
-		else:	
+		else:
 			result += minus_integer[i]
+	else:
+		result += minus_integer[i] * minus_integer[i+1]
+
+print(plus_integer)
+print(minus_integer)
 print(result)
