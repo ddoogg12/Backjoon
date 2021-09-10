@@ -5,7 +5,7 @@ import heapq
 n ,k = map(int, input().split())
 
 bosuk= []    #보석
-bag  = []    #가방
+bags  = []    #가방
 result = 0   #최대합
 
 #보석 정보 담기
@@ -15,18 +15,19 @@ for _ in range(n):
 #가방 정보 담기
 for _ in range(k):
 	data = int(input())
-	bag.append(data)
+	bags.append(data)
 
-bosuk.sort(key=lambda x: (-x[1]))
-bag.sort()
+#bosuk.sort(key=lambda x: (-x[1]))
+bags.sort()
 
-for i in range(len(bosuk)):
-	for j in range(len(bag)):
-		if bosuk[i][0] <= bag[j]:
-			result += bosuk[i][1]
-			heapq.heappop(bag)
-			break
-	if len(bag) == 0:
-		break
+result = 0
+temp_bosuk = []
+for bag in bags:
+	while bosuk and bag >= bosuk[0][0]:
+		heapq.heappush(temp_bosuk, -heapq.heappop(bosuk)[1])
+	if temp_bosuk:
+		result -= heapq.heappop(temp_bosuk)
+	elif not bosuk:
+		break	
 
 print(result)
