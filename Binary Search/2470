@@ -1,0 +1,28 @@
+#두 용액(2470)
+n = int(input())
+array = list(map(int, input().split()))
+
+array.sort()
+
+start = 0
+end = n - 1
+czero = abs(array[start] + array[end])
+cstart = start
+cend = end
+
+
+while start < end:
+	temp = array[start] + array[end]
+	if abs(temp) < czero:
+		cstart = start
+		cend = end
+		czero = abs(temp)
+		if czero == 0:
+			break
+	if temp > 0:
+		end -=1
+	else:
+		start +=1
+
+
+print(array[cstart], array[cend])
