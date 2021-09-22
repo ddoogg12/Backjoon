@@ -1,0 +1,26 @@
+#가장 긴 증가하는부분(12015)
+import sys
+
+def find(target):
+	l, h = 1, len(stack)-1
+	while l < h:
+		m = (l + h) // 2
+		if stack[m] < target:
+			l = m + 1
+		elif stack[m] > target:
+			h = m
+		else:
+			l=h=m
+	return h
+
+n = int(sys.stdin.readline())
+array = list(map(int, sys.stdin.readline().split()))
+stack = [0]
+
+for a in array:
+	if stack[-1] < a:
+		stack.append(a)
+	else:
+		stack[find(a)] = a
+
+print(len(stack)-1)
