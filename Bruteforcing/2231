@@ -1,0 +1,25 @@
+# 분해합(브론즈2)
+# 해결방안
+# 1. 브루트포스 알고리즘이여서 모든 경우의수를 거쳐서 구현
+# 시행착오
+# 1. 브론즈 문제라 시행 착오 X
+
+n = int(input())
+flag = False
+min_result = n
+for i in range(1, n+1):
+	num = str(i) #문자열 변환
+	sum = 0  #각자리수의 합
+	result = 0 #총 합
+	for j in range(len(num)):
+		sum += int(num[j])
+	result = i + sum #각 자리수합 + 원래수
+	#result가 생성자인지 검증
+	if result == n:
+		flag = True
+		min_result = min(min_result, i)
+
+#생성자가 하나도 없을 경우
+if flag == False:
+	min_result = 0
+print(min_result)
