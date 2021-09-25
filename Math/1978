@@ -1,0 +1,22 @@
+#소수 찾기(실버4)
+# 해결방안
+# 1.입력된 수를 2부터 그 수의 이전 수까지 하나씩 나누기를 하여 나머지가 0인경우는 소수 제외판정
+
+n = int(input())
+array = list(map(int, input().split()))
+count = 0
+
+for i in array:
+	isPrime = True
+	if i == 1:
+		isPrime = False		
+	else:
+		for j in range(2, i):
+			if i % j == 0:
+				isPrime = False
+				break
+		
+	if isPrime == True:
+		count += 1
+
+print(count)
