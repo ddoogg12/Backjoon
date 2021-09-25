@@ -1,0 +1,21 @@
+# 실버5
+# 영화감독 슘(1436)
+# 해결방안
+# 1.666부터 for문을 돌려 666이 들어가는 인덱스마다 카운트 증가
+  2.카운트가 n이랑 같을시 종료
+# 시행착오
+# 1.6666과 같이 모든 수가 6일 경우 카운트가 1개 이상으로 되어 맞지 않게되었다.따라서 16라인에 if문에 break를 주었음
+# 2.13라인의 반복문 범위 max를 무한으로 해야하는데 일단은 1000000000000로 함. 나중에 while문으로 구현 시도
+
+n = int(input())
+count = 0
+
+for i in range(666, 1000000000000):
+	number = str(i)
+	for j in range(len(number) -2):
+		if number[j] == number[j+1] == number[j+2] == '6':
+			count += 1
+			break
+	if n == count:
+		print(int(number))
+		break
