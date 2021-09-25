@@ -1,0 +1,36 @@
+# 스택(실버 4)
+# 해결방안
+# 1.n 만큼 반복문 실행
+# 2.입력값을 a[0] , a[1]로 나눈다.
+# 3.a[0]으로 명령 구분
+# 시행 착오
+# 1.for문 입력함수를 input으로 하면 시간초과로인해 sys를 사용
+
+import sys
+
+n = int(input())
+stack = []
+for _ in range(n):
+	a = sys.stdin.readline().split()
+	if a[0] == 'push':
+		num = int(a[1])
+		stack.append(num)
+	elif a[0] == 'pop':
+		if len(stack) != 0:
+			print(stack.pop())
+		else:	
+			print(-1)
+	elif a[0] =='size':
+		print(len(stack))
+	elif a[0] == 'empty':
+		if len(stack) == 0:
+			print(1)
+		else:
+			print(0)
+	elif a[0] == 'top':
+		if len(stack) == 0:
+			print(-1)
+		else:
+			print(stack[-1])
+	else:
+		print(-1)
