@@ -1,0 +1,19 @@
+# 블랙잭(브론즈2)
+# 해결 방안
+# 1. array만큼 삼중 for문을 돌려 합이 m보다 작거나 같은 선에서 최대값 구하기
+# 시행 착오
+# 1.처음에 14라인 for문 시작 인덱스를 i+2로 해서 오류 났었음..  
+
+
+n, m  = map(int, input().split())
+array = list(map(int, input().split()))
+max_sum = 0
+sum = 0
+for i in range(len(array)-2):
+	for j in range(i + 1, len(array)-1):
+		for k in range(j + 1, len(array)):
+			sum = array[i]+array[j]+array[k]
+			if sum <= m:
+				max_sum = max(max_sum, sum)
+
+print(max_sum)				
