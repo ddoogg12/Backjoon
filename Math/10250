@@ -1,0 +1,22 @@
+# ACM 호텔(브론즈3)
+# 해결 방안
+# 1. 인원수를 호텔의 높이로 나누어 몪과 나머지로 호실 조합
+# 2. 인원수와 호텔의 높이가 딱 나누워 떨어질때 분기처리하여 따로 호실값 구함
+# 시행 착오  
+# 1. n이 h로 나누어 떨어질때 따로 구해야 해서 시간 소요
+
+t = int(input())
+
+for i in range(t):
+	h, w, n = map(int, input().split())
+	y = str( ( n // h ) + 1)
+	x = str( n %  h )
+
+	if int(n) % int(h) == 0:
+		x = str(int(h))
+		y = str( n // h)
+	if int(y) < 10:
+		y = '0' + y
+
+	room = int(x + y)
+	print(room)
