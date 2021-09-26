@@ -1,0 +1,35 @@
+# NMK(플레티넘3)
+# 해결방안
+# 1. 증가수열, 감소수열마다 1개의 원소는 공유해야함
+# 2. m개의 그룹으로 만들떄 적어도 한 그룹은 k만큼의 길이가 되도록 구성해야함
+# 3. 모든 그룹을 리버스 시켜주면 정답을 구할수 있음
+# 시행 착오
+# 1. 처음 플레티넘 문제 도전해서 문제이해하는데 어려움
+# 2. 다른분들의 솔루션 참고하여 도전
+
+n , m, k = map(int, input().split())
+
+if m + k - 1 <= n <= m * k:
+	array, boundary = [ i+ 1 for i in range(n)], [0, k]
+	n, m = n - k, m -1
+	if m == 0:
+		size, rem = 1, 0
+
+	else:
+		size, rem = n //m, n % m
+
+	for i in range(m):
+		if rem > 0:
+			boundary.append( boundary[-1] + size + 1 )
+			rem -= 1
+
+		else:
+			boundary.append( boundary[-1] + size )
+	
+	for i in range(len(boundary) -1):
+		array[boundary[i] : boundary[i + 1]] = array[boundary[i] : boundary[i +1]][::-1]
+
+	print(" ".join(map(str, array)))
+
+else:
+	print(-1)
