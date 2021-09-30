@@ -1,0 +1,28 @@
+# 그룹 단어 체커 (실버5)
+# 해결방안
+# 1. n만큼 반복문 돌리면서 data에 단어문 입력받음
+# 2. data에 사용된 알파벳을 compare에 리스트로 받음
+# 3. compare를 반복문으로 돌려 data 단어문에 i가 2개이상이면 data1의 i의 시작부터 count까지 data의 리스트를 담음
+# 4. 만약 다른 문자가 data1에 들어가있으면 해당건은 그룹단어가 아니므로 flag를 False로 던짐
+# 시행 착오
+# 1. aaaaaaabaaaaaa 와 같이 b가 a 중간에 들어가있는 경우를 고려하지못함
+
+n = int(input())
+result = n
+for _ in range(n):
+	data = input()
+	compare = list(set(data))
+	flag = True
+	for i in compare:
+		count = data.count(i)
+		if count > 1:
+			ind = data.find(i)
+			data1 = data[ind: ind+count]
+			for j in data1:
+				if i != j:
+					flag = False
+					break
+	if flag == False:
+		result -= 1
+
+print(result)
