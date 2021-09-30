@@ -1,0 +1,29 @@
+# 다이얼 (브론즈 2)
+# 해결방안
+# 1. 알파벳순으로 문자열 배열 선언
+# 2. 입력 문자열을 반복문으로 돌려 다이얼 번호의 마지막 문자때마다 시간sum을 한다.
+
+
+s = input()
+alpha = ['A', 'B', 'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+sum = 0
+for i in range(len(s)):
+	if s[i] <= 'C':
+		sum += 3
+	elif s[i] <= 'F':
+		sum += 4
+	elif s[i] <= 'I':
+		sum += 5
+	elif s[i] <= 'L':
+		sum += 6
+	elif s[i] <= 'O':
+		sum += 7
+	elif s[i] <= 'S':
+		sum += 8
+	elif s[i] <= 'V':
+		sum += 9
+	elif s[i] <= 'Z':
+		sum += 10
+	else:
+		sum += 0
+print(sum)
