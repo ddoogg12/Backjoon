@@ -1,0 +1,28 @@
+# 괄호 (실버 4)
+# 해결 방안
+# 1.stack에 입력값이 ( 이면 append를 하고 ) 이면 pop을 해서 pop시 빈값이면 False, 또한 For문 연산이 끝났을시 stack이 비어있지 않으면 False
+# 시행 착오
+# 1 ( 와 ) 이 수가 같은 경우만 처음에 고려했으나 ())(() 이런 경우가 있어 stack이라는 새로운 리스트를 생성하여 해결
+t = int(input())
+result = []
+for _ in range(t):
+	data = list(input())
+	stack = []
+	flag = True
+	for i in data:
+		if i == '(':
+			stack.append(i)
+		else:
+			if len(stack) == 0:
+				flag = False
+				break
+			else:
+				stack.pop()
+				
+	if ( flag == True and len(stack) == 0 ):			
+		result.append('YES')
+	else:
+		result.append('NO')
+
+for i in result:
+	print(i)
