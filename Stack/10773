@@ -1,0 +1,15 @@
+# 제로 (실버 4)
+# 해결방안
+# 1. 스택 구현 문제로 input이 0일떄마다 pop을 해주면 간단하게 구현 가능
+
+
+k = int(input())
+array = []
+for _ in range(k):
+	data = int(input())
+	if data == 0:
+		array.pop()
+	else:
+		array.append(data)
+
+print(sum(array))
