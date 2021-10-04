@@ -1,0 +1,33 @@
+# 회전하는 큐 (실버4)
+# 해결방안
+# 1.데크로 입력받아 찾으려는수를 반복문으로 찾는다.
+# 2. 연산 2,3 중 어떤것으로 할지는 queue에 찾는 번호의 인덱스를 찾아 이진탐색식으로 mid값보다 큰지 작은지 해서 찾는다.
+# 시행 착오
+# 1. 2,3번 연산중 어떤것을 해야하는지 찾는데 좀 오래걸림
+
+from collections import deque
+
+n, m = map(int, input().split())
+num = list(map(int, input().split()))
+queue = deque([i+1 for i in range(n)])
+count = 0
+
+for i in num:
+    while queue:
+        if queue[0] == i:
+            queue.popleft()
+            break
+        else:
+            #2번연산을 할지 3번을 할지 체크
+            if queue.index(i) < len(queue) / 2:
+                while queue[0] != i:
+                    k = queue.popleft()
+                    queue.append(k)
+                    count += 1
+            else:
+                while queue[0] != i:
+                    k = queue.pop()
+                    queue.appendleft(k)
+                    count += 1
+
+print(count)
