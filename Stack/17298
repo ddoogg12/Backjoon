@@ -1,0 +1,18 @@
+# 오큰수(골드4)
+# 해결방안
+# 1. result 배열에 -1로 디폴트로 채우기
+# 2. for문돌때마다 while문으로 오큰수를 찾느다
+# 시행 착오
+# 1. 시간복잡도가 O(n^2)만 피하면 되며 스택은 인덱스 값을 넣어서 result에 넣는식으로 구현해야함
+
+import sys
+n = int(input())
+arr = list(map(int, sys.stdin.readline().split()))
+result = [-1] * n
+stack = []
+
+for i in range(len(arr)):
+    while stack and arr[stack[-1]] < arr[i]:
+        result[stack.pop()] = arr[i]
+    stack.append(i)
+print(*result)  
