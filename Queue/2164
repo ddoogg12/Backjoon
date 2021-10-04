@@ -1,0 +1,16 @@
+# 카드2 (실버4)
+# 해결방안
+# 1. 데크로 해야 시간초과가 안뜨는 관계로 데크로 해서 왼쪽 pop해준후 append으로 오른쪽에 다시 붙여준다
+# 시행착오
+# 1. while 조건문을 queue로 한뒤 len이 1이면 break 형식으로 처음에 했는데 런타임에로 발생으로 조건문으로 주었음
+
+from collections import deque
+
+n = int(input())
+queue = deque([i+1 for i in range(n)])
+
+while len(queue) > 1:
+    queue.popleft()
+    k = queue.popleft()
+    queue.append(k)
+print(queue[0])
