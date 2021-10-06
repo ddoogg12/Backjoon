@@ -1,0 +1,36 @@
+# 프린터 큐( 실버 3)
+# 해결방안
+# 1. 큐를 사용하여 m번째 원소를 checkList에 따로 관리하면 쉽게 구현 가능
+# 2. 큐의 선입 원소가 max갑인지 if로 분기처리하여 구현
+# 시행 착오
+# 1. m번째 원소를 어떻게 관리하면서 로직은 구현해야할지 오래고민..
+
+t = int(input()) #테스트 케이스 입력
+
+# 테스트케이스만큼 반복문
+for _ in range(t):
+    # n : 프린터의 큐의 원소 개수 m : 찾아야할 원소의 인덱스
+    n, m = map(int, input().split())
+    # arr : 프린터 리스트 입력
+    arr = list(map(int, input().split()))
+    # 프린터의 모든원소 0 초기화  m번째는 1로 셋팅 
+    checkList = [ 0 for i in range(n)]
+    checkList[m] = 1
+
+
+    count = 0  #출력횟수
+    while True:
+        if arr[0] == max(arr): # 프린터의 0번쩨 원소가 최대값이면 출력
+            count += 1
+
+            if checkList[0] != 1: #출력된 원소가 m이 아니면 체크리스트에서 제거
+                del arr[0]
+                del checkList[0]
+            else: #맞으면 종료후 count 출력
+                print(count)
+                break
+        else: # 최대값이 아니면 배열의 뒤로 보낸후 삭제
+            arr.append(arr[0])
+            checkList.append(checkList[0])
+            del arr[0]
+            del checkList[0]
