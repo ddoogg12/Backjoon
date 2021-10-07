@@ -1,0 +1,50 @@
+# 단지 번호 붙이기(실버1)
+# 해결 방안
+# 1. bfs 방식으로 해결
+# 2. dx , dy로 방향키 입력
+# 3. bfs함수에서 1인 좌표를 찾아서 count
+# 시행 착오
+# 1.bfs 구현이 아직 익숙치 않아서 시간 소요
+
+from collections import deque
+#방향키 입력
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+def bfs(graph, a, b):
+    #정사각형 길이
+    n = len(graph)
+    #시작점0으로 셋팅후 큐에 담음
+    graph[a][b] = 0
+    queue = deque()
+    queue.append((a, b))
+    count = 1
+    while queue:
+        x, y = queue.popleft()
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if nx < 0 or nx >= n or ny < 0 or ny >= n:
+                continue
+            #다음 좌표가 1이면 0으로 만든후(방문처리) q에 담음
+            if graph[nx][ny] == 1:
+                graph[nx][ny] = 0
+                queue.append((nx, ny))
+                count +=1
+    return count
+n = int(input())
+arr = []
+answer = []
+
+for _ in range(n):
+    arr.append(list(map(int, input())))
+
+for i in range(n):
+    for j in range(n):
+        if arr[i][j] == 1:
+            answer.append(bfs(arr, i, j))
+
+answer.sort()
+print(len(answer))
+for i in range(len(answer)):
+    print(answer[i])
