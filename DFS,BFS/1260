@@ -1,0 +1,42 @@
+#DFS 와 BFS (실버2)
+#해결 방안
+# 1. dfs는 재귀함수, bfs는 데크로 구현
+
+from collections import deque
+
+#dfs 함수
+def dfs(v):
+    visited[v] = 1
+    print(v, end= ' ')
+    for i in range(1, n + 1):
+        if visited[i] == 0 and arr[v][i] == 1:
+            dfs(i)
+#bfs 함수
+def bfs(v):
+    queue = deque()
+    queue.append(v)
+    visited[v] = 1
+    while queue:
+        v = queue.popleft()
+        print(v, end= ' ')
+        for i in range(1, n + 1):
+            if visited[i] == 0 and arr[v][i] == 1:
+                queue.append(i)
+                visited[i] = 1
+
+
+n, m, v = map(int, input().split())
+
+arr = [[0] * (n + 1) for _ in range(n + 1)]
+
+for i in range(m):
+    a, b = map(int, input().split())
+    arr[a][b] = arr[b][a] = 1
+
+#시퀀스를 1부터 시작하기 위해 n+1로 셋팅
+visited = [0] * (n + 1)
+
+dfs(v)
+print()
+visited = [0] * (n + 1)
+bfs(v)
