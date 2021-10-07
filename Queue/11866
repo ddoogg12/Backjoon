@@ -1,0 +1,23 @@
+# 요세푸스 문제0 (실버 4)
+# 해결 방안
+# 1. queue가 빌 때까지 k 단위로 짤라서 k 이내의 원소들은 append시키고 k번째는 print로 출력
+# 시행 착오
+# 1. <> 처리를 좀더 효과적으로 넣을까 했는데 일단 print로 앞뒤로 넣었다..
+
+
+
+from collections import deque
+
+n, k = map(int, input().split())
+queue = deque([i+1 for i in range(n)])
+
+print('<', end='')
+while queue:
+    for i in range(k-1):
+        queue.append(queue[0])
+        queue.popleft()
+    print(queue.popleft(), end='')
+
+    if queue:
+        print(', ', end='')
+print('>')
