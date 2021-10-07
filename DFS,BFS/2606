@@ -1,0 +1,34 @@
+# 바이러스 (실버3)
+# 해결 방안
+# 1. bfs로 구현하면 쉽게 해결가능
+# 2. 1번 컴퓨터에 연결될 컴퓨터 수만 구하면 되므로 bfs의 v를 1로 설정
+# 3. return값은 1번 컴퓨터를 제외해아하므로 -1 해준다
+
+from collections import deque
+
+def bfs(v):
+    visited[v] = 1
+    queue = deque([])
+    queue.append(v)
+    count = 0
+    while queue:
+        v = queue.popleft()
+        count += 1
+        for i in range(1, n+1):
+            if visited[i] == 0 and arr[v][i] == 1:
+                queue.append(i)
+                visited[i] = 1
+    return count
+
+n = int(input()) # 컴퓨터 수
+m = int(input()) # 간선의 수
+arr = [ (n + 1) * [0] for _ in range(n+1)] # 간선의 수 배열
+
+# 방문된 컴퓨터 초기화
+visited = [0] * (n + 1)
+
+for i in range(m):
+    a, b = map(int, input().split())
+    arr[a][b] = arr[b][a] = 1
+
+print(bfs(1) -1)
