@@ -1,0 +1,26 @@
+# 숨바꼭질( 실버 1)
+# 해결 방안
+# 1.bfs를 이용해서 구현
+# 2. dist에 좌표별로 시간을 저장
+# 3. MAX값을 지정해줘야한다.
+# 시행 착오
+# 1. Max값을 지정 고려하지 못해서 시간 소요
+
+from collections import deque
+
+n, k = map(int, input().split())
+MAX = 10 ** 5
+dist = [0] * (MAX + 1)
+
+queue = deque([])
+queue.append(n)
+
+while queue:
+    x = queue.popleft()
+    if x == k:
+        print(dist[x])
+        break
+    for nx in ( x+1, x-1, x * 2):
+        if 0 <= nx <= MAX and not dist[nx]:
+            dist[nx] = dist[x] + 1
+            queue.append(nx)
