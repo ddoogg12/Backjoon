@@ -1,0 +1,45 @@
+# 토마토 (실버 1)
+# 해결 방안
+# 1.이전 토마토 문제와 동일하게 bfs로 구현 가능
+# 2. 박스의 높이가 추가됨에 따라 3차원 리스트로 구현
+# 시행 착오
+# 1.3차원 배열은 처음 구현해봐서 arr입력받는거에서 시간소요
+
+from collections import deque
+
+m, n , h = map(int, input().split())
+arr = [[list(map(int, input().split()))for i in range(n)]for depth in range(h)]
+queue = deque([])
+answer = 0
+
+#방향키
+dx  = [0, 0, 0, 0, 1 ,-1]
+dy  = [0, 0, 1, -1, 0, 0]
+dz  = [1, -1, 0, 0, 0, 0] 
+
+for t in range(h):
+    for i in range(n):
+        for j in range(m):
+            if arr[t][i][j] == 1:
+                queue.append([t, i, j])
+
+def bfs():
+    while queue:
+        t, x, y = queue.popleft()
+        for i in range(6):
+            nt = t + dz[i]
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if 0 <= nt and 0 <= nx and 0 <= ny and nt < h and nx < n and ny < m and arr[nt][nx][ny] == 0:
+                arr[nt][nx][ny] = arr[t][x][y] +  1
+                queue.append([nt, nx, ny])
+bfs()
+for k in arr:
+    for i in k:
+        for j in i:
+            if j == 0:
+                print(-1)
+                exit(0)
+        answer = max(answer, max(i))
+
+print(answer-1)
