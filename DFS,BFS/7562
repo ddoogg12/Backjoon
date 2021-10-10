@@ -1,0 +1,36 @@
+# 나이트의 이동 (실버 2)
+# 해결방안
+# 1. bfs로 쉽게 구현
+# 2. 나이트의 움직임 8 가지를 dx에 셋업
+
+
+# 초기 코드
+from collections import deque
+
+def bfs():
+    while queue:
+        x, y = queue.popleft()
+        visited[x][y] = 1
+        if x == det[0] and y == det[1]:
+            print(board[x][y])
+            break
+        for i in range(8):
+            nx = x + dx[i][0]
+            ny = y + dx[i][1]
+            if 0 <= nx < num and 0 <= ny < num and visited[nx][ny] == 0:
+                visited[nx][ny] = 1
+                board[nx][ny] = board[x][y] + 1
+                queue.append([nx, ny])
+
+
+dx = [(-2, 1), (-2, -1), (-1, 2), (-1, -2), (1, 2), (1, -2), (2, 1), (2, -1)]
+t = int(input())
+for _ in range(t):
+    num = int(input())
+    arr = list(map(int, input().split()))
+    det = list(map(int, input().split()))
+    board = [[0] * num for _ in range(num)]
+    visited = [[0] * num for _ in range(num)]
+    queue = deque()
+    queue.append(arr)
+    bfs()
