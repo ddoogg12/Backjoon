@@ -3,24 +3,27 @@
 # 1. dfs로 구현
 
 import sys
-
+sys.setrecursionlimit(10 ** 9)
 input = sys.stdin.readline
-sys.setrecursionlimit(10**9)
 
-n = int(input())
-graph = [[] for _ in range(n + 1)]
+n = int(input()) #노드의 개수 입력
+#1번 노드부터 시작하기 위해 n+1
+graph = [ [] for _ in range(n + 1)]
 
-def dfs(x, wei):
+def dfs(x, weight):
     for i in graph[x]:
         a, b = i
         if distance[a] == -1:
-            distance[a] = wei + b
-            dfs(a, wei + b)
+            distance[a] = b + weight
+            dfs(a, b + weight )
 
-for _ in range(n - 1):
-    a, b, c= map(int, input().split())
+
+#그래프에 노드 데이터 입력받음
+for i in range(n-1):
+    a, b, c = map(int, input().split())
     graph[a].append([b, c])
     graph[b].append([a, c])
+
 
 distance = [-1] * (n + 1)
 distance[1] = 0
